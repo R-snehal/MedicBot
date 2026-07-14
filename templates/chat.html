@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedicBot — Medical Reference Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="grain"></div>
+
+<div class="app">
+  <div class="shell">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3v18M4.5 8.5h15M4.5 15.5h15" stroke="#DFF3EC" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="9.2" stroke="#DFF3EC" stroke-width="1.3" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>MedicBot</h1>
+          <p>RAG · Qdrant · MiniLM-L6-v2</p>
+        </div>
+      </div>
+      <div class="status">
+        <span class="dot"></span>
+        <span class="label">Connected to knowledge base</span>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9v4m0 4h.01M10.29 3.86l-8.18 14.18A1.5 1.5 0 0 0 3.4 20.5h17.2a1.5 1.5 0 0 0 1.29-2.46L13.71 3.86a1.5 1.5 0 0 0-2.62 0Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Answers are generated from indexed medical references and may be incomplete. Not a substitute for professional medical advice.</span>
+    </div>
+
+    <!-- Chat -->
+    <div class="chat" id="chat">
+
+      <div class="row bot">
+        <div class="avatar">M</div>
+        <div class="bubble-wrap">
+          <div class="bubble">
+            <p>Hi, I'm MedicBot. Ask me about symptoms, conditions, or treatments — I'll answer using the medical references indexed in my knowledge base.</p>
+          </div>
+          <!-- <span class="timestamp">9:41 AM</span> -->
+        </div>
+      </div>
+
+      <!-- <div class="row user">
+        <div class="avatar">Y</div>
+        <div class="bubble-wrap"> -->
+          <!-- <div class="bubble"> -->
+            <!-- <p>What are the common symptoms of anemia?</p> -->
+          <!-- </div> -->
+           <!-- <span class="timestamp">9:41 AM</span> 
+        </div>
+      </div> -->
+
+       <!-- <div class="row bot">
+        <div class="avatar">M</div>
+        <div class="bubble-wrap">
+          <div class="bubble">
+            <p>Common symptoms of anemia include fatigue, pale skin, shortness of breath, dizziness, and a rapid or irregular heartbeat. Severity depends on how quickly the condition develops and its underlying cause.</p> 
+          </div>
+          <div class="sources">
+            <div class="source-chip"><span class="idx">1</span> Gale Encyclopedia — p. 142</div>
+            <div class="source-chip"><span class="idx">2</span> Gale Encyclopedia — p. 144</div>
+          </div>
+          <span class="timestamp">9:41 AM</span>
+        </div>
+      </div> -->
+
+    </div>
+
+    <!-- Suggestions (hidden after first user message) -->
+    <div class="suggestions" id="suggestions">
+      <div class="suggestion" onclick="useSuggestion(this)">What causes migraines?</div>
+      <div class="suggestion" onclick="useSuggestion(this)">Explain type 2 diabetes</div>
+      <div class="suggestion" onclick="useSuggestion(this)">Symptoms of dehydration</div>
+    </div>
+
+    <!-- Input -->
+    <div class="input-bar">
+      <textarea id="msg-input" rows="1" placeholder="Ask about a condition, symptom, or treatment…" onkeydown="handleKeydown(event)" oninput="autoGrow(this)"></textarea>
+      <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send message">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20l16-8L4 4v6l11 2-11 2v6z" fill="#1B1204"/></svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
