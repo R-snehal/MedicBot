@@ -23,11 +23,11 @@ import os
 
 app = Flask(__name__)
 
-print("__file__:", __file__)
-print("Current Working Directory:", os.getcwd())
-print("App root:", app.root_path)
-print("Template folder:", app.template_folder)
-print("Template exists:", os.path.exists(os.path.join(app.root_path, app.template_folder)))
+# print("__file__:", __file__)
+# print("Current Working Directory:", os.getcwd())
+# print("App root:", app.root_path)
+# print("Template folder:", app.template_folder)
+# print("Template exists:", os.path.exists(os.path.join(app.root_path, app.template_folder)))
 load_dotenv()
 
 QDRANT_URL = os.getenv("QDRANT_URL")
@@ -44,7 +44,7 @@ docsearch = QdrantVectorStore.from_existing_collection(
     url=QDRANT_URL,
     api_key=QDRANT_API_KEY,
     collection_name="MedicBot",
-    prefer_grpc=True,
+    prefer_grpc=False,
 )
 
 retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k":3})
@@ -90,5 +90,5 @@ def chat():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port= 8080, debug=True)
+    app.run(host="0.0.0.0", port= 8080)
 
