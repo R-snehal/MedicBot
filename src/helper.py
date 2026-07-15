@@ -9,8 +9,8 @@ def load_pdf_file(data):
     documents=loader.load()
     return documents
 
-loader = PyMuPDFLoader("Data/2016 Gale Encyclopedia of Medicine - 5E.pdf")
-documents = loader.load()
+# loader = PyMuPDFLoader("Data/2016 Gale Encyclopedia of Medicine - 5E.pdf")
+# documents = loader.load()
 
 #Split the Data into Text Chunks
 def text_split(extracted_data):
